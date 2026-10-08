@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Servis in naročilo – B&amp;G Avtomobili Šentjur</title>
+  <meta name="description" content="Naročite se na servis pri B&amp;G Avtomobili v Šentjurju: redni servis, diagnostika, pnevmatike, kleparstvo in ličarstvo ter servis klimatske naprave.">
+  <meta name="theme-color" content="#16171a">
+  <link rel="icon" href="img/bg-phoenix.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/hero-service.jpg">
+  <link rel="stylesheet" href="css/styles.css?v=6">
+</head>
+<body>
+  <a class="skip" href="#vsebina">Preskoči na vsebino</a>
+
+  <div class="top">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand" aria-label="B&amp;G Avtomobili – domov">
+          <img src="img/bg-logo.svg" alt="B&amp;G Avtomobili" width="220" height="20">
+        </a>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Odpri meni">
+        <label for="nav-toggle" class="nav-burger" aria-hidden="true"><span></span><span></span></label>
+
+        <nav class="site-nav" aria-label="Glavna navigacija">
+          <ul>
+            <li><a href="index.html#prodaja">Prodaja</a></li>
+            <li><a href="index.html#storitve">Storitve</a></li>
+            <li><a href="index.html#zavarovanja">Zavarovanja</a></li>
+            <li><a href="index.html#lokacija">Lokacija</a></li>
+            <li><a href="index.html#o-nas">O nas</a></li>
+            <li><a href="servis.html" aria-current="page">Servis</a></li>
+          </ul>
+          <a href="https://www.instagram.com/bg_avtomobili/" class="nav-ig" target="_blank" rel="noopener noreferrer" aria-label="B&amp;G Avtomobili na Instagramu">
+            <span class="nav-ig__icon"><span class="i i-instagram" aria-hidden="true"></span></span>
+            <span class="nav-ig__label">Instagram</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <nav class="tray" aria-label="Hitre povezave">
+      <div class="container tray__inner">
+        <a class="tray__item tray__item--main" href="https://www.avto.net/_DEALERPAGES/results.asp?broker=1112&amp;star=&amp;izpis=1&amp;oglasrubrika=1&amp;oblika=0" target="_blank" rel="noopener noreferrer">
+          <span class="tray__icon"><span class="i i-car" aria-hidden="true"></span></span>
+          <span class="tray__text">
+            <span class="tray__label">Ponudba vozil</span>
+            <span class="tray__sub">Vsa vozila na zalogi</span>
+          </span>
+          <span class="i i-arrow-up-right tray__arrow" aria-hidden="true"></span>
+        </a>
+        <a class="tray__item" href="#narocilo">
+          <span class="tray__icon"><span class="i i-calendar-check" aria-hidden="true"></span></span>
+          <span class="tray__label">Rezervacija servisa</span>
+        </a>
+        <a class="tray__item" href="index.html#lokacija">
+          <span class="tray__icon"><span class="i i-map-pin" aria-hidden="true"></span></span>
+          <span class="tray__label">Lokacija in čas</span>
+        </a>
+        <a class="tray__item" href="tel:+38637490733">
+          <span class="tray__icon"><span class="i i-phone-call" aria-hidden="true"></span></span>
+          <span class="tray__label">Pokliči nas</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="vsebina">
+    <section class="page-hero" aria-labelledby="servis-title">
+      <img class="page-hero__img" src="img/servis.jpg" alt="" width="1024" height="1024" fetchpriority="high">
+      <div class="container page-hero__inner">
+        <nav class="crumbs" aria-label="Drobtinice">
+          <a href="index.html">Domov</a><span aria-hidden="true">/</span><span aria-current="page">Servis</span>
+        </nav>
+        <h1 id="servis-title" class="page-hero__title">Servis</h1>
+        <p class="page-hero__lead">Redni servis, diagnostika, pnevmatike, kleparstvo in klima – vse v naši delavnici v Šentjurju. Pošljite povpraševanje in termin vam potrdimo po telefonu.</p>
+        <div class="page-hero__actions">
+          <a href="#narocilo" class="btn btn--red"><span class="i i-calendar-check" aria-hidden="true"></span>Naroči se na servis</a>
+          <a href="tel:+38637490733" class="btn btn--ghost"><span class="i i-phone" aria-hidden="true"></span>03 749 07 33</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAROČILO (pripravljeno za spletno naročanje) -->
+    <section id="narocilo" class="section section--soft" aria-labelledby="narocilo-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Naročilo na servis</p>
+          <h2 id="narocilo-title" class="section__title">Rezervirajte termin</h2>
+          <p class="section__lead">Izpolnite obrazec in pripravili bomo predlog termina. Za nujne primere nas raje pokličite.</p>
+        </header>
+
+        <div class="booking">
+          <form class="form-card" action="mailto:info@bg-avtomobili.si?subject=Naro%C4%8Dilo%20na%20servis" method="post" enctype="text/plain">
+            <h3 class="form-card__title">Podatki za naročilo</h3>
+            <p class="form-card__lead">Polja, označena z *, so obvezna.</p>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="f-ime">Ime in priimek <span>*</span></label>
+                <input id="f-ime" name="Ime" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="f-tel">Telefon <span>*</span></label>
+                <input id="f-tel" name="Telefon" type="tel" autocomplete="tel" inputmode="tel" required>
+              </div>
+              <div class="field">
+                <label for="f-email">E-pošta</label>
+                <input id="f-email" name="E-posta" type="email" autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="f-reg">Registrska številka</label>
+                <input id="f-reg" name="Registrska" type="text" autocapitalize="characters">
+              </div>
+              <div class="field">
+                <label for="f-vozilo">Znamka in model vozila <span>*</span></label>
+                <input id="f-vozilo" name="Vozilo" type="text" placeholder="npr. BMW 320d, 2019" required>
+              </div>
+              <div class="field">
+                <label for="f-storitev">Storitev <span>*</span></label>
+                <select id="f-storitev" name="Storitev" required>
+                  <option value="Redni servis">Redni servis</option>
+                  <option value="Diagnostika">Računalniška diagnostika</option>
+                  <option value="Pnevmatike">Pnevmatike / hotel za pnevmatike</option>
+                  <option value="Kleparstvo in ličarstvo">Kleparstvo in ličarstvo</option>
+                  <option value="Klimatska naprava">Servis klimatske naprave</option>
+                  <option value="Drugo">Drugo</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-datum">Želeni datum</label>
+                <input id="f-datum" name="Datum" type="date">
+              </div>
+              <div class="field">
+                <label for="f-cas">Želeni čas</label>
+                <select id="f-cas" name="Cas">
+                  <option value="Kadarkoli">Kadarkoli</option>
+                  <option value="Dopoldne">Dopoldne (8:00 – 12:00)</option>
+                  <option value="Popoldne">Popoldne (12:00 – 17:00)</option>
+                </select>
+              </div>
+              <div class="field field--full">
+                <label for="f-opis">Opis težave ali opombe</label>
+                <textarea id="f-opis" name="Opis" rows="4"></textarea>
+              </div>
+              <label class="consent field--full">
+                <input type="checkbox" name="Soglasje" value="da" required>
+                Strinjam se, da me B&amp;G Avtomobili kontaktira glede termina servisa.
+              </label>
+            </div>
+
+            <div class="form-foot">
+              <p>Termin vam potrdimo po telefonu v delovnem času.</p>
+              <button type="submit" class="btn btn--red">Pošlji naročilo<span class="i i-arrow-right" aria-hidden="true"></span></button>
+            </div>
+          </form>
+
+          <aside class="aside" aria-label="Informacije o servisu">
+            <div class="aside-card aside-card--carbon">
+              <p class="eyebrow eyebrow--light"><span class="dot" aria-hidden="true"></span>Hitreje po telefonu</p>
+              <a class="aside-card__num" href="tel:+38637490733">03 749 07 33</a>
+              <p>Pokličite nas za nujne popravke, pomoč pri škodi ali če ne veste, katero storitev potrebujete.</p>
+              <a class="act act--call" href="tel:+38637490733"><span class="i i-phone" aria-hidden="true"></span>Pokliči servis</a>
+            </div>
+
+            <div class="aside-card">
+              <h3>Delovni čas</h3>
+              <dl class="hours">
+                <div><dt>Ponedeljek – petek</dt><dd>8:00 – 17:00</dd></div>
+                <div><dt>Sobota</dt><dd>8:00 – 12:00</dd></div>
+                <div><dt>Nedelja in prazniki</dt><dd>Zaprto</dd></div>
+              </dl>
+            </div>
+
+            <div class="aside-card">
+              <h3>Kako poteka</h3>
+              <ol class="steps">
+                <li>Pošljete naročilo ali nas pokličete.</li>
+                <li>Potrdimo termin in okvirno ceno.</li>
+                <li>Vozilo pripeljete na Cesto Leona Dobrotinška 21 B v Šentjurju.</li>
+                <li>Brez vaše potrditve ne opravimo dodatnih del.</li>
+              </ol>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="ponudba-title">
+      <div class="container">
+        <header class="section__head section__head--split">
+          <div class="section__head">
+            <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Servisne storitve</p>
+            <h2 id="ponudba-title" class="section__title">Kaj opravimo v delavnici</h2>
+          </div>
+          <p class="section__lead">Vse storitve opravimo z originalnimi ali kakovostno enakovrednimi deli in sodobno diagnostično opremo.</p>
+        </header>
+
+        <ul class="svc-cards">
+          <li class="svc-card">
+            <img src="img/redni-servis.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+            <div class="svc-card__body">
+              <p class="svc-panel__meta"><span class="i i-clock" aria-hidden="true"></span>4 ure</p>
+              <h3>Redni servis</h3>
+              <p>Olje, filtri in vpis v servisno knjižico.</p>
+            </div>
+          </li>
+          <li class="svc-card">
+            <img src="img/mehanska-dela.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+            <div class="svc-card__body">
+              <p class="svc-panel__meta"><span class="i i-clock" aria-hidden="true"></span>45 min</p>
+              <h3>Diagnostika</h3>
+              <p>Branje napak in pisno poročilo.</p>
+            </div>
+          </li>
+          <li class="svc-card">
+            <img src="img/vulkanizerstvo.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+            <div class="svc-card__body">
+              <p class="svc-panel__meta"><span class="i i-clock" aria-hidden="true"></span>40 min</p>
+              <h3>Pnevmatike</h3>
+              <p>Menjava, uravnoteženje in hramba.</p>
+            </div>
+          </li>
+          <li class="svc-card">
+            <img src="img/karoserija.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+            <div class="svc-card__body">
+              <p class="svc-panel__meta"><span class="i i-clock" aria-hidden="true"></span>po oceni</p>
+              <h3>Kleparstvo</h3>
+              <p>Lakirnica in urejanje škode.</p>
+            </div>
+          </li>
+          <li class="svc-card">
+            <img src="/img/zahtevna-dela.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+            <div class="svc-card__body">
+              <p class="svc-panel__meta"><span class="i i-clock" aria-hidden="true"></span>po dogovoru</p>
+              <h3>Zahtevna dela</h3>
+              <p>Zahtevna strokovna dela po naročilu</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="img/bg-logo.svg" alt="B&amp;G Avtomobili" width="220" height="20" class="logo-invert" loading="lazy">
+        <p>Prodaja in odkup vozil, servis in zavarovanja v Šentjurju.</p>
+      </div>
+      <nav aria-label="Noga strani">
+        <h2 class="footer-title">Povezave</h2>
+        <ul>
+          <li><a href="index.html#prodaja">Prodaja</a></li>
+          <li><a href="index.html#storitve">Storitve</a></li>
+          <li><a href="index.html#zavarovanja">Zavarovanja</a></li>
+          <li><a href="index.html#lokacija">Lokacija</a></li>
+          <li><a href="index.html#o-nas">O nas</a></li>
+          <li><a href="servis.html">Servis</a></li>
+
+
+        </ul>
+      </nav>
+      <address>
+        <h2 class="footer-title">Podjetje</h2>
+        B&amp;G Avtomobili, trgovina in servis motornih vozil, d.o.o.<br>
+        Sedež podjetja: Cesta Leona Dobrotinška 21 B, 3230 Šentjur<br>
+        Zastopnika: Božo Plemenitaš, Gregor Eller<br>
+        Matična številka: 1528416000<br>
+        ID za DDV: SI24676632<br>
+        TRR (IBAN): SI56 0510 0801 4728 763
+      </address>
+      <div class="footer-phoenix">
+        <img src="img/bg-phoenix-light.svg" alt="" width="1095" height="568" loading="lazy">
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 B&amp;G Avtomobili d.o.o. Vse pravice pridržane.</p>
+      <a href="#vsebina">Na vrh ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
