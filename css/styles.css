@@ -18,7 +18,7 @@
   --radius: 20px;
   --radius-sm: 12px;
   --header-h: 72px;
-  --tray-h: 64px;
+  --tray-h: 68px;
   --top-h: calc(var(--header-h) + var(--tray-h));
   --font-head: "Archivo", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
@@ -579,13 +579,29 @@ p {
 .tray {
   background: var(--carbon-weave);
   color: var(--white);
-  border-bottom: 3px solid var(--red);
+  box-shadow: 0 10px 24px -14px #00000099;
 }
 
 .tray__inner {
+  position: relative;
   display: grid;
   grid-template-columns: 1.6fr 1fr 1fr 1fr;
-  padding-inline: 0;
+  height: var(--tray-h);
+  padding: 9px 11px;
+  isolation: isolate;
+}
+
+/* One shared capsule behind all links so they read as a single dock */
+.tray__inner::before {
+  content: "";
+  position: absolute;
+  inset: 5px 7px;
+  z-index: -1;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #ffffff12, #ffffff08);
+  box-shadow:
+    inset 0 0 0 1px #ffffff17,
+    inset 0 1px 0 #ffffff1a;
 }
 
 .tray__item {
@@ -594,39 +610,62 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  min-height: var(--tray-h);
-  padding: 8px 4px;
-  border-right: 1px solid var(--line-light);
+  gap: 2px;
+  min-width: 0;
+  padding: 4px;
+  border-radius: 14px;
+  background: transparent;
   font-family: var(--font-head);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
   font-stretch: 105%;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: 0.01em;
   text-align: center;
   transition: background-color 0.2s;
 }
 
-.tray__item:last-child {
-  border-right: 0;
+.tray__item:hover {
+  background: #ffffff14;
 }
 
-.tray__item:hover {
-  background: #ffffff0f;
+.tray__item:nth-child(n + 3)::before {
+  content: "";
+  position: absolute;
+  top: 25%;
+  bottom: 25%;
+  left: 0;
+  width: 1px;
+  background: #ffffff1f;
+  transition: opacity 0.2s;
+}
+
+.tray__item:hover::before,
+.tray__item:hover + .tray__item::before {
+  opacity: 0;
+}
+
+.tray__item:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
 }
 
 .tray__icon {
   display: grid;
   place-items: center;
   flex: none;
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   border-radius: 999px;
   color: var(--red);
   transition:
     background-color 0.2s,
     color 0.2s;
+}
+
+.tray__icon .i {
+  width: 16px;
+  height: 16px;
 }
 
 .tray__item:not(.tray__item--main):hover .tray__icon {
@@ -649,8 +688,10 @@ p {
 .tray__item--main {
   overflow: hidden;
   background: var(--red);
-  border-right: 0;
-  font-size: 13px;
+  margin-right: 4px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--red) 80%, transparent);
+  font-size: 12.5px;
   font-weight: 800;
   isolation: isolate;
 }
@@ -686,37 +727,55 @@ p {
 }
 
 @media (min-width: 768px) {
+  :root {
+    --tray-h: 58px;
+  }
+
   .tray__inner {
     grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    padding: 10px 25px;
+  }
+
+  .tray__inner::before {
+    inset: 6px 20px;
+    border-radius: 999px;
   }
 
   .tray__item {
     flex-direction: row;
-    gap: 12px;
-    font-size: 14px;
+    gap: 10px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13.5px;
   }
 
   .tray__icon {
-    width: 34px;
-    height: 34px;
-    background: #ffffff10;
+    width: 28px;
+    height: 28px;
+    background: #ffffff0f;
   }
 
   .tray__item--main {
     justify-content: flex-start;
-    gap: 14px;
-    padding-inline: 20px;
+    gap: 10px;
+    margin-right: 6px;
+    padding: 3px 16px 3px 3px;
     text-align: left;
   }
 
   .tray__item--main .tray__icon {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background: var(--white);
   }
 
+  .tray__item--main .tray__icon .i {
+    width: 17px;
+    height: 17px;
+  }
+
   .tray__item--main .tray__label {
-    font-size: 17px;
+    font-size: 14.5px;
     font-stretch: 115%;
     letter-spacing: 0.01em;
   }
@@ -724,16 +783,18 @@ p {
   .tray__sub {
     display: block;
     font-family: var(--font-body);
-    font-size: 12.5px;
+    font-size: 12px;
     font-weight: 500;
-    color: color-mix(in srgb, var(--white) 82%, transparent);
+    line-height: 1.2;
+    color: color-mix(in srgb, var(--white) 85%, transparent);
   }
 
   .tray__arrow {
     display: inline-block;
+    flex: none;
     margin-left: auto;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     transition: transform 0.3s var(--ease);
   }
 
