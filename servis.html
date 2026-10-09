@@ -35,10 +35,16 @@
             <li><a href="index.html#o-nas">O nas</a></li>
             <li><a href="servis.html" aria-current="page">Servis</a></li>
           </ul>
-          <a href="https://www.instagram.com/bg_avtomobili/" class="nav-ig" target="_blank" rel="noopener noreferrer" aria-label="B&amp;G Avtomobili na Instagramu">
-            <span class="nav-ig__icon"><span class="i i-instagram" aria-hidden="true"></span></span>
-            <span class="nav-ig__label">Instagram</span>
-          </a>
+          <div class="nav-social">
+            <a href="https://www.instagram.com/bg_avtomobili/" class="nav-ig" target="_blank" rel="noopener noreferrer" aria-label="B&amp;G Avtomobili na Instagramu">
+              <span class="nav-ig__icon"><span class="i i-instagram" aria-hidden="true"></span></span>
+              <span class="nav-ig__label">Instagram</span>
+            </a>
+            <a href="mailto:bgavto@gmail.si" class="nav-ig" aria-label="Pišite nam po e-pošti">
+              <span class="nav-ig__icon"><span class="i i-mail" aria-hidden="true"></span></span>
+              <span class="nav-ig__label">E-pošta</span>
+            </a>
+          </div>
         </nav>
       </div>
     </header>
@@ -95,9 +101,14 @@
         </header>
 
         <div class="booking">
-          <form class="form-card" action="mailto:info@bg-avtomobili.si?subject=Naro%C4%8Dilo%20na%20servis" method="post" enctype="text/plain">
+          <form class="form-card" id="servis-form" action="https://formsubmit.co/info@bg-avtomobili.si" method="post">
             <h3 class="form-card__title">Podatki za naročilo</h3>
             <p class="form-card__lead">Polja, označena z *, so obvezna.</p>
+
+            <input type="hidden" name="_subject" value="Novo naročilo na servis – spletna stran">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
 
             <div class="form-grid">
               <div class="field">
@@ -157,6 +168,7 @@
               <p>Termin vam potrdimo po telefonu v delovnem času.</p>
               <button type="submit" class="btn btn--red">Pošlji naročilo<span class="i i-arrow-right" aria-hidden="true"></span></button>
             </div>
+            <p class="form-status" role="status" aria-live="polite" hidden></p>
           </form>
 
           <aside class="aside" aria-label="Informacije o servisu">
@@ -283,5 +295,6 @@
       <a href="#vsebina">Na vrh ↑</a>
     </div>
   </footer>
+  <script src="js/servis-form.js" defer></script>
 </body>
 </html>

@@ -345,10 +345,13 @@ p {
 .site-header {
   position: relative;
   z-index: 2;
-  background: color-mix(in srgb, var(--white) 92%, transparent);
-  backdrop-filter: saturate(160%) blur(14px);
-  -webkit-backdrop-filter: saturate(160%) blur(14px);
-  border-bottom: 1px solid var(--line);
+  background: var(--carbon-weave);
+  color: var(--white);
+  border-bottom: 1px solid var(--line-light);
+}
+
+.site-header .brand img {
+  filter: brightness(0) invert(1);
 }
 
 .header-inner {
@@ -380,7 +383,7 @@ p {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--soft);
+  background: color-mix(in srgb, var(--white) 12%, transparent);
   cursor: pointer;
 }
 
@@ -389,7 +392,7 @@ p {
   width: 20px;
   height: 2px;
   border-radius: 2px;
-  background: var(--carbon);
+  background: var(--white);
   transition: transform 0.3s var(--ease);
 }
 
@@ -415,9 +418,9 @@ p {
   flex-direction: column;
   gap: 16px;
   padding: 8px 20px 24px;
-  background: var(--white);
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 24px 48px -12px #16171a40;
+  background: var(--carbon);
+  border-bottom: 1px solid var(--line-light);
+  box-shadow: 0 24px 48px -12px #00000080;
 }
 
 .nav-toggle:checked ~ .site-nav {
@@ -432,12 +435,19 @@ p {
 .site-nav ul a {
   display: block;
   padding: 14px 0;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--line-light);
   font-weight: 500;
 }
 
 .site-nav ul a[aria-current="page"] {
   color: var(--red);
+}
+
+.nav-social {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-ig {
@@ -447,7 +457,7 @@ p {
   align-self: flex-start;
   min-height: 44px;
   padding: 0 16px 0 6px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-light);
   border-radius: 999px;
   font-size: 14px;
   font-weight: 600;
@@ -462,7 +472,7 @@ p {
   width: 32px;
   height: 32px;
   border-radius: 999px;
-  background: var(--carbon);
+  background: color-mix(in srgb, var(--white) 12%, transparent);
   color: var(--white);
   transition: background-color 0.2s;
 }
@@ -872,7 +882,7 @@ p {
   font-stretch: 125%;
   line-height: 0.92;
   letter-spacing: -0.03em;
-  text-transform: uppercase;
+  text-transform: none;
   text-wrap: balance;
 }
 
@@ -2257,6 +2267,39 @@ p {
   margin-bottom: 24px;
   color: var(--muted);
   font-size: 15px;
+}
+
+.form-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.form-status {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.form-status--ok {
+  background: var(--carbon);
+  color: var(--white);
+}
+
+.form-status--error {
+  background: color-mix(in srgb, var(--red) 10%, var(--white));
+  color: var(--carbon);
+  border: 1px solid var(--red);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
 }
 
 .form-grid {
