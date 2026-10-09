@@ -42,9 +42,10 @@
         form.reset();
         showStatus("Hvala! Vaše naročilo smo prejeli. Termin vam potrdimo po telefonu.", "ok");
       })
-      .catch(function () {
+      .catch(function (err) {
+        console.error("FormSubmit:", err);
         showStatus(
-          "Pošiljanje ni uspelo. Pokličite nas na 03 749 07 33 ali pišite na info@bg-avtomobili.si.",
+          "Pošiljanje ni uspelo (" + err.message + "). Pokličite nas na 03 749 07 33 ali pišite na info@bg-avtomobili.si.",
           "error"
         );
       })
