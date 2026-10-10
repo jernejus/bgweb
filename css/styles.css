@@ -15,8 +15,16 @@
 
   --line: color-mix(in srgb, var(--carbon) 10%, transparent);
   --line-light: color-mix(in srgb, var(--white) 16%, transparent);
+  --text-on-dark: color-mix(in srgb, var(--white) 80%, transparent);
+  --text-on-dark-muted: color-mix(in srgb, var(--white) 68%, transparent);
   --radius: 20px;
+  --radius-md: 16px;
   --radius-sm: 12px;
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--carbon) 6%, transparent),
+    0 4px 12px -6px color-mix(in srgb, var(--carbon) 12%, transparent);
+  --shadow-lg: 0 24px 48px -20px color-mix(in srgb, var(--carbon) 38%, transparent);
+  --shadow-red: 0 10px 22px -12px color-mix(in srgb, var(--red) 75%, transparent);
+  --dur: 0.2s;
   --header-h: 72px;
   --tray-h: 68px;
   --top-h: calc(var(--header-h) + var(--tray-h));
@@ -62,6 +70,12 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color var(--dur);
+}
+
+::selection {
+  background: var(--red);
+  color: var(--white);
 }
 
 h1,
@@ -134,16 +148,18 @@ p {
   border-radius: 999px;
   background: var(--red);
   color: var(--white);
+  font-weight: 600;
+  transition: top var(--dur) var(--ease);
 }
 
 .skip:focus {
   top: 12px;
 }
 
+/* Outline follows each element's own radius, so no radius override here. */
 :focus-visible {
   outline: 3px solid var(--red);
   outline-offset: 3px;
-  border-radius: 8px;
 }
 
 /* ---------- Icons (CSS mask, Lucide & brand) ---------- */
@@ -223,14 +239,19 @@ p {
   line-height: 1;
   cursor: pointer;
   transition:
-    transform 0.2s var(--ease),
-    background-color 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+    transform var(--dur) var(--ease),
+    background-color var(--dur),
+    color var(--dur),
+    border-color var(--dur),
+    box-shadow var(--dur);
 }
 
 .btn:hover {
   transform: translateY(-2px);
+}
+
+.btn:focus-visible {
+  outline-offset: 2px;
 }
 
 .btn .i {
@@ -251,6 +272,7 @@ p {
 
 .btn--red:hover {
   background: color-mix(in srgb, var(--red) 86%, var(--carbon));
+  box-shadow: var(--shadow-red);
 }
 
 .btn--dark {
@@ -266,11 +288,13 @@ p {
   color: var(--white);
   border-color: color-mix(in srgb, var(--white) 40%, transparent);
   background: color-mix(in srgb, var(--carbon) 30%, transparent);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
 .btn--ghost:hover {
   border-color: var(--white);
+  background: color-mix(in srgb, var(--carbon) 45%, transparent);
 }
 
 .btn--line {
@@ -296,18 +320,25 @@ p {
   color: var(--white);
   font-size: 15px;
   font-weight: 600;
+  line-height: 1;
   transition:
-    background-color 0.2s,
-    border-color 0.2s;
+    transform var(--dur) var(--ease),
+    background-color var(--dur),
+    border-color var(--dur);
 }
 
 .act .i {
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
 }
 
 .act:hover {
   border-color: var(--white);
+  transform: translateY(-2px);
+}
+
+.act:focus-visible {
+  outline-offset: 2px;
 }
 
 .act--call {
@@ -576,10 +607,22 @@ p {
   }
 }
 
+/* Same weave as the header, but slightly see-through so content glides under the dock. */
 .tray {
-  background: var(--carbon-weave);
+  background:
+    repeating-linear-gradient(45deg, #ffffff06 0 2px, transparent 2px 6px),
+    repeating-linear-gradient(-45deg, #00000033 0 2px, transparent 2px 6px),
+    color-mix(in srgb, var(--carbon) 84%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
   color: var(--white);
   box-shadow: 0 10px 24px -14px #00000099;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .tray {
+    background: var(--carbon-weave);
+  }
 }
 
 .tray__inner {
@@ -918,7 +961,7 @@ p {
   backdrop-filter: blur(8px);
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -966,7 +1009,7 @@ p {
 
 .slide-note {
   max-width: 46ch;
-  color: color-mix(in srgb, var(--white) 82%, transparent);
+  color: var(--text-on-dark);
   font-size: 15px;
 }
 
@@ -1125,7 +1168,7 @@ p {
 }
 
 .section--carbon .section__lead {
-  color: color-mix(in srgb, var(--white) 78%, transparent);
+  color: var(--text-on-dark);
 }
 
 .eyebrow {
@@ -1223,7 +1266,7 @@ p {
 
 .mini p {
   color: var(--muted);
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.55;
 }
 
@@ -1256,7 +1299,7 @@ p {
   color: var(--muted);
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -1323,6 +1366,11 @@ p {
   white-space: nowrap;
 }
 
+.call__num:hover,
+.agent__num a:hover {
+  color: var(--red);
+}
+
 .call__acts {
   display: flex;
   gap: 6px;
@@ -1338,9 +1386,14 @@ p {
   background: var(--white);
   color: var(--carbon);
   transition:
-    background-color 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+    transform var(--dur) var(--ease),
+    background-color var(--dur),
+    color var(--dur),
+    border-color var(--dur);
+}
+
+.ico:focus-visible {
+  outline-offset: 2px;
 }
 
 .ico .i {
@@ -1410,7 +1463,7 @@ p {
 
 .insure__lead {
   max-width: 52ch;
-  color: color-mix(in srgb, var(--white) 78%, transparent);
+  color: var(--text-on-dark);
   font-size: 17px;
 }
 
@@ -1427,7 +1480,7 @@ p {
   flex: none;
   width: 56px;
   height: 56px;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   background: var(--red);
   color: var(--white);
   font-family: var(--font-head);
@@ -1437,7 +1490,7 @@ p {
 
 .agent__name {
   font-size: 15px;
-  color: color-mix(in srgb, var(--white) 78%, transparent);
+  color: var(--text-on-dark);
 }
 
 .agent__name strong {
@@ -1552,12 +1605,11 @@ p {
 }
 
 .partner:focus-visible {
-  outline: 3px solid var(--red);
   outline-offset: 2px;
 }
 
 .partners__note {
-  color: color-mix(in srgb, var(--white) 60%, transparent);
+  color: var(--text-on-dark-muted);
   font-size: 13px;
 }
 
@@ -1600,7 +1652,7 @@ p {
   min-height: 56px;
   padding: 0 18px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   background: var(--white);
   font-family: var(--font-head);
   font-size: 15px;
@@ -1695,10 +1747,10 @@ p {
   gap: 8px;
   color: var(--muted);
   font-family: var(--font-head);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 700;
   font-stretch: 115%;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -1725,7 +1777,7 @@ p {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  font-size: 15.5px;
+  font-size: 15px;
   line-height: 1.45;
 }
 
@@ -1804,7 +1856,7 @@ p {
 }
 
 .about__copy > p {
-  color: color-mix(in srgb, var(--white) 78%, transparent);
+  color: var(--text-on-dark);
   font-size: 17px;
 }
 
@@ -1830,7 +1882,7 @@ p {
 }
 
 .values span {
-  color: color-mix(in srgb, var(--white) 66%, transparent);
+  color: var(--text-on-dark-muted);
   font-size: 15px;
 }
 
@@ -1854,8 +1906,8 @@ p {
 }
 
 .stats dt {
-  color: color-mix(in srgb, var(--white) 66%, transparent);
-  font-size: 13.5px;
+  color: var(--text-on-dark-muted);
+  font-size: 14px;
   line-height: 1.35;
 }
 
@@ -1966,7 +2018,7 @@ p {
   font-size: 13px;
   font-weight: 700;
   font-stretch: 115%;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -1992,7 +2044,7 @@ p {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  font-size: 15.5px;
+  font-size: 15px;
 }
 
 .loc__list .i {
@@ -2019,7 +2071,7 @@ p {
   justify-content: space-between;
   gap: 16px;
   padding: 10px 0;
-  font-size: 14.5px;
+  font-size: 14px;
 }
 
 .hours div + div {
@@ -2075,9 +2127,9 @@ p {
   justify-content: space-between;
   gap: 12px;
   padding: 10px;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   background: var(--white);
-  box-shadow: 0 20px 40px -16px #16171a59;
+  box-shadow: var(--shadow-lg);
 }
 
 .map-nav__info {
@@ -2105,7 +2157,7 @@ p {
   flex: none;
   width: 38px;
   height: 38px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--carbon);
   color: var(--red);
 }
@@ -2133,7 +2185,7 @@ p {
     linear-gradient(45deg, #ffffff06 25%, transparent 25%, transparent 75%, #ffffff06 75%);
   background-size: 8px 8px;
   background-position: 0 0, 4px 4px;
-  color: color-mix(in srgb, var(--white) 70%, transparent);
+  color: var(--text-on-dark-muted);
   font-size: 15px;
 }
 
@@ -2198,7 +2250,7 @@ p {
   justify-content: space-between;
   gap: 12px;
   padding-block: 24px;
-  border-top: 1px solid color-mix(in srgb, var(--white) 10%, transparent);
+  border-top: 1px solid var(--line-light);
   font-size: 13px;
 }
 
@@ -2275,7 +2327,7 @@ p {
 .crumbs {
   display: flex;
   gap: 8px;
-  color: color-mix(in srgb, var(--white) 70%, transparent);
+  color: var(--text-on-dark-muted);
   font-size: 14px;
 }
 
@@ -2294,7 +2346,7 @@ p {
 
 .page-hero__lead {
   max-width: 54ch;
-  color: color-mix(in srgb, var(--white) 82%, transparent);
+  color: var(--text-on-dark);
   font-size: 17px;
 }
 
@@ -2341,7 +2393,7 @@ p {
 .form-status {
   margin-top: 16px;
   padding: 12px 16px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   font-size: 15px;
   font-weight: 500;
   line-height: 1.5;
@@ -2395,7 +2447,7 @@ p {
   background: var(--soft);
   color: var(--carbon);
   font: inherit;
-  font-size: 15.5px;
+  font-size: 16px;
   transition:
     border-color 0.2s,
     background-color 0.2s;
@@ -2449,7 +2501,7 @@ p {
 
 .form-foot p {
   color: var(--muted);
-  font-size: 13.5px;
+  font-size: 14px;
 }
 
 .aside {
@@ -2480,7 +2532,7 @@ p {
 }
 
 .aside-card--carbon p {
-  color: color-mix(in srgb, var(--white) 72%, transparent);
+  color: var(--text-on-dark-muted);
   font-size: 15px;
 }
 
@@ -2542,7 +2594,7 @@ p {
 
 .svc-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 30px 60px -24px #16171a59;
+  box-shadow: var(--shadow-lg);
 }
 
 .svc-card img {
@@ -2567,7 +2619,7 @@ p {
 
 .svc-card p {
   color: var(--muted);
-  font-size: 14.5px;
+  font-size: 15px;
 }
 
 @media (min-width: 640px) {
@@ -2609,5 +2661,401 @@ p {
 
   .svc-cards {
     grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Touch phones & small tablets only. Desktop and mouse users never match this.
+   ========================================================================== */
+@media (max-width: 768px) and (pointer: coarse) {
+  :root {
+    --gutter: clamp(16px, 5.5vw, 24px);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  a,
+  button,
+  label,
+  input,
+  select,
+  textarea,
+  summary {
+    touch-action: manipulation;
+  }
+
+  /* ---------- Fluid gutters + safe-area insets ---------- */
+  .container {
+    padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
+  }
+
+  .header-inner {
+    padding-inline: max(20px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-right));
+  }
+
+  .tray__inner {
+    padding-inline: max(11px, env(safe-area-inset-left)) max(11px, env(safe-area-inset-right));
+  }
+
+  .site-header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .site-nav {
+    max-height: calc(100dvh - var(--header-h) - env(safe-area-inset-top));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: max(24px, calc(env(safe-area-inset-bottom) + 16px));
+  }
+
+  .footer-bottom {
+    padding-bottom: max(24px, calc(env(safe-area-inset-bottom) + 16px));
+  }
+
+  /* ---------- Fluid scale ---------- */
+  .section {
+    padding-block: clamp(48px, 14vw, 64px);
+  }
+
+  .section__head {
+    margin-bottom: clamp(28px, 8vw, 36px);
+  }
+
+  .section__lead,
+  .insure__lead,
+  .about__copy > p,
+  .page-hero__lead {
+    font-size: clamp(16px, 4.4vw, 17px);
+  }
+
+  .slide-content {
+    padding-bottom: clamp(88px, 24vw, 104px);
+  }
+
+  .svc-panel__body {
+    padding: clamp(22px, 7vw, 28px) clamp(20px, 6vw, 24px) clamp(26px, 8vw, 32px);
+  }
+
+  .loc__body,
+  .form-card,
+  .aside-card {
+    padding: clamp(20px, 6vw, 24px);
+  }
+
+  .footer-grid {
+    padding-block: clamp(48px, 14vw, 64px) 40px;
+  }
+
+  /* Grid children default to min-width:auto, which let the stats row push the page wider. */
+  .about > *,
+  .stats div {
+    min-width: 0;
+  }
+
+  .stats dd {
+    font-size: clamp(22px, 6.6vw, 44px);
+  }
+
+  .stats div + div {
+    padding-left: clamp(10px, 3vw, 16px);
+  }
+
+  /* ---------- 100dvh hero ---------- */
+  @supports (height: 100dvh) {
+    .hero {
+      height: clamp(560px, calc(100dvh - var(--top-h)), 820px);
+    }
+  }
+
+  /* ---------- Touch targets >= 44px ---------- */
+  .btn--sm {
+    min-height: 44px;
+  }
+
+  .ico {
+    width: 44px;
+    height: 44px;
+  }
+
+  .calls {
+    padding: 6px;
+  }
+
+  .call {
+    gap: 8px;
+    padding: 8px 6px 8px 8px;
+  }
+
+  .call__avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand {
+    display: block;
+    padding-block: 14px;
+    margin-block: -14px;
+  }
+
+  .call__acts {
+    gap: 4px;
+  }
+
+  .call__num {
+    font-size: clamp(15px, 4.2vw, 16px);
+  }
+
+  .hero-progress {
+    bottom: 26px;
+  }
+
+  .hero-progress .bar {
+    height: 44px;
+  }
+
+  /* Text links: grow the hit box to 44px, pull it back with negative margins so the layout stays put. */
+  .loc__list a,
+  .crumbs a,
+  .footer-bottom a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-block: -10px;
+  }
+
+  .site-footer ul {
+    gap: 0;
+  }
+
+  .site-footer ul a {
+    display: inline-flex;
+    align-items: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .call__num,
+  .agent__num a,
+  .aside-card__num {
+    position: relative;
+  }
+
+  .call__num::after,
+  .agent__num a::after,
+  .aside-card__num::after {
+    content: "";
+    position: absolute;
+    inset: -12px -6px;
+  }
+
+  .consent input {
+    width: 22px;
+    height: 22px;
+    margin-top: 0;
+  }
+
+  /* ---------- Inputs: 16px stops iOS zoom-on-focus ---------- */
+  .field input,
+  .field select,
+  .field textarea {
+    font-size: 16px;
+  }
+
+  /* ---------- Service tabs: snap scrolling with fluid gutters ---------- */
+  .nav-svc__tabs {
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+    scroll-snap-type: x proximity;
+    overscroll-behavior-x: contain;
+  }
+
+  .nav-svc__tabs label {
+    scroll-snap-align: start;
+    transition:
+      transform var(--dur) var(--ease),
+      background-color var(--dur),
+      color var(--dur),
+      border-color var(--dur);
+  }
+
+  /* ---------- No hover-only behaviour (hover sticks after a tap) ---------- */
+  .hero:hover :is(.slide-img, .hero-progress i) {
+    animation-play-state: running;
+  }
+
+  .hero:has(:focus-visible) :is(.slide-img, .hero-progress i) {
+    animation-play-state: paused;
+  }
+
+  .location__map iframe {
+    filter: none;
+  }
+
+  .btn:hover,
+  .act:hover,
+  .partner:hover,
+  .gallery figure:hover img,
+  .svc-card:hover {
+    transform: none;
+  }
+
+  .svc-card:hover {
+    box-shadow: none;
+  }
+
+  .btn--red:hover {
+    background: var(--red);
+    box-shadow: none;
+  }
+
+  .btn--dark:hover {
+    background: var(--carbon);
+  }
+
+  .btn--ghost:hover {
+    border-color: color-mix(in srgb, var(--white) 40%, transparent);
+    background: color-mix(in srgb, var(--carbon) 30%, transparent);
+  }
+
+  .btn--line:hover,
+  .ico:hover {
+    border-color: var(--line);
+  }
+
+  .ico--call:hover {
+    border-color: var(--red);
+    background: var(--red);
+  }
+
+  .ico--wa:hover {
+    border-color: color-mix(in srgb, var(--whatsapp) 35%, transparent);
+    background: color-mix(in srgb, var(--whatsapp) 10%, var(--white));
+    color: var(--whatsapp);
+  }
+
+  .ico--viber:hover {
+    border-color: color-mix(in srgb, var(--viber) 35%, transparent);
+    background: color-mix(in srgb, var(--viber) 10%, var(--white));
+    color: var(--viber);
+  }
+
+  .partner:hover {
+    border-color: transparent;
+  }
+
+  .call:hover {
+    background: transparent;
+  }
+
+  .nav-svc__tabs label:hover {
+    border-color: var(--line);
+  }
+
+  .nav-svc__tabs input:checked + label:hover {
+    border-color: var(--carbon);
+  }
+
+  /* ---------- :active press feedback ---------- */
+  .btn:active,
+  .act:active {
+    transform: scale(0.97);
+  }
+
+  .btn--red:active {
+    background: color-mix(in srgb, var(--red) 86%, var(--carbon));
+  }
+
+  .btn--dark:active {
+    background: color-mix(in srgb, var(--carbon) 80%, var(--red));
+  }
+
+  .btn--ghost:active {
+    border-color: var(--white);
+    background: color-mix(in srgb, var(--carbon) 45%, transparent);
+  }
+
+  .btn--line:active {
+    border-color: var(--carbon);
+  }
+
+  .ico:active {
+    transform: scale(0.92);
+    border-color: var(--carbon);
+  }
+
+  .ico--call:active {
+    border-color: var(--carbon);
+    background: var(--carbon);
+  }
+
+  .ico--wa:active {
+    border-color: var(--whatsapp);
+    background: var(--whatsapp);
+    color: var(--white);
+  }
+
+  .ico--viber:active {
+    border-color: var(--viber);
+    background: var(--viber);
+    color: var(--white);
+  }
+
+  .call:active {
+    background: var(--soft);
+  }
+
+  .partner:active {
+    border-color: var(--red);
+    transform: scale(0.98);
+  }
+
+  .nav-svc__tabs label:active {
+    transform: scale(0.98);
+    border-color: var(--carbon);
+  }
+
+  .hero-progress .bar:active::before {
+    background: color-mix(in srgb, var(--white) 55%, transparent);
+  }
+
+  .loc__list a:active,
+  .call__num:active,
+  .agent__num a:active {
+    color: var(--red);
+  }
+
+  .site-footer a:active,
+  .crumbs a:active {
+    color: var(--white);
+  }
+}
+
+@media (max-width: 768px) and (pointer: coarse) and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .btn:active,
+  .act:active,
+  .ico:active,
+  .partner:active,
+  .nav-svc__tabs label:active {
+    transform: none;
   }
 }
