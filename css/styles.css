@@ -607,12 +607,12 @@ p {
   }
 }
 
-/* Same weave as the header, but slightly see-through so content glides under the dock. */
+/* Same weave as the header, with only a hint of see-through so the dock stays legible over content. */
 .tray {
   background:
     repeating-linear-gradient(45deg, #ffffff06 0 2px, transparent 2px 6px),
     repeating-linear-gradient(-45deg, #00000033 0 2px, transparent 2px 6px),
-    color-mix(in srgb, var(--carbon) 84%, transparent);
+    color-mix(in srgb, var(--carbon) 96%, transparent);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   backdrop-filter: blur(14px) saturate(140%);
   color: var(--white);
@@ -1715,7 +1715,8 @@ p {
 .nav-svc:has(#svc-2:checked) .svc-panel--2,
 .nav-svc:has(#svc-3:checked) .svc-panel--3,
 .nav-svc:has(#svc-4:checked) .svc-panel--4,
-.nav-svc:has(#svc-5:checked) .svc-panel--5 {
+.nav-svc:has(#svc-5:checked) .svc-panel--5,
+.nav-svc:has(#svc-6:checked) .svc-panel--6 {
   visibility: visible;
   animation: panel-in 0.45s var(--ease) both;
 }
@@ -2250,7 +2251,6 @@ p {
   justify-content: space-between;
   gap: 12px;
   padding-block: 24px;
-  border-top: 1px solid var(--line-light);
   font-size: 13px;
 }
 
